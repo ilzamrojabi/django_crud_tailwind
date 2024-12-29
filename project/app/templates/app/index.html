@@ -1,0 +1,36 @@
+{% extends 'app/layout.html' %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+    <div class="w-full max-w-5xl bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-gray-700 mb-6">Data Management</h2>
+        <a href="{% url 'siswa_create' %}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Tambah Data</a>
+        <table class="w-full mt-6 table-auto border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border border-gray-300 px-4 py-2">#</th>
+                    <th class="border border-gray-300 px-4 py-2">Nis</th>
+                    <th class="border border-gray-300 px-4 py-2">Nama</th>
+                    <th class="border border-gray-300 px-4 py-2">Kelas</th>
+                    <th class="border border-gray-300 px-4 py-2">Alamat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for siswa in siswa %}
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2 text-center">{{ siswa.id }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ siswa.nis }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ siswa.nama }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ siswa.kelas }}</td>
+                    <td class="border border-gray-300 px-4 py-2">{{ siswa.alamat }}</td>
+                    <td class="border border-gray-300 px-4 py-2 text-center">
+                        <a href="{% url 'siswa_update' siswa.id %}" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</a>
+                        <a href="{% url 'siswa_delete' siswa.id %}" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Hapus</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
